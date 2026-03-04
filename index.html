@@ -82,6 +82,7 @@
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
             scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
         }
         .video-slider::-webkit-scrollbar { display: none; }
 
@@ -95,23 +96,33 @@
         }
         
         @media (min-width: 768px) {
-            .slider-card.v-card { flex: 0 0 300px; }
-            .slider-card.h-card { flex: 0 0 48%; }
+            .slider-card.v-card { flex: 0 0 320px; }
+            .slider-card.h-card { flex: 0 0 500px; }
         }
 
         .v-box { position: relative; width: 100%; padding-top: 177%; }
         .h-box { position: relative; width: 100%; padding-top: 56.25%; }
-        video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-bottom: 1px solid #222; }
         .label { padding: 15px; font-size: 0.75rem; text-align: center; color: var(--primary); font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* Form */
+        /* Contact Section */
         .contact-section { background: rgba(5,5,5,0.98); padding: 80px 20px; margin-top: 80px; border-top: 1px solid #222; }
         .contact-container { max-width: 500px; margin: 0 auto; }
         input, textarea { width: 100%; padding: 15px; margin-bottom: 15px; background: #0a0a0a; border: 1px solid #333; color: #fff; border-radius: 10px; font-family: 'Inter'; outline: none; }
         input:focus, textarea:focus { border-color: var(--primary); }
         .submit-btn { width: 100%; padding: 18px; background: linear-gradient(45deg, var(--primary), var(--accent)); border: none; color: #fff; font-weight: 900; border-radius: 10px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; }
         
-        footer { text-align: center; padding: 50px; font-size: 0.7rem; color: #555; letter-spacing: 2px; }
+        .contact-info { margin-top: 40px; text-align: center; }
+        .contact-info p { font-family: 'Syncopate'; font-size: 0.7rem; color: #666; margin-bottom: 10px; letter-spacing: 2px; }
+        .contact-info a { color: var(--primary); text-decoration: none; font-weight: 900; font-size: 1.4rem; letter-spacing: 1px; transition: 0.3s; }
+        .contact-info a:hover { text-shadow: 0 0 10px var(--primary); }
+
+        footer { text-align: center; padding: 50px; font-size: 0.7rem; color: #444; letter-spacing: 2px; }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 15px; }
+            .prev-btn, .next-btn { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -125,14 +136,14 @@
 
     <header>
         <h1>DOOMATIONS</h1>
-        <p class="hero-desc">Transforming imagination into <span class="highlight">Ultra-HQ AI Visuals</span>. Premium Cinematic Artistry.</p>
+        <p class="hero-desc">Transforming imagination into <span class="highlight">Ultra-HQ AI Visuals</span>. High-End Cinematic Productions.</p>
     </header>
 
     <div class="container">
         
         <h2 class="section-title">Vertical Masterpieces</h2>
         <div class="slider-wrapper">
-            <button class="nav-btn prev-btn" onclick="slide('v-slider', -320)">&#10094;</button>
+            <button class="nav-btn prev-btn" onclick="slide('v-slider', -340)">&#10094;</button>
             <div class="video-slider" id="v-slider">
                 <div class="slider-card v-card">
                     <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.03.29 PM.mp4" type="video/mp4"></video></div>
@@ -151,35 +162,35 @@
                     <div class="label">PREVIOUS REEL</div>
                 </div>
             </div>
-            <button class="nav-btn next-btn" onclick="slide('v-slider', 320)">&#10095;</button>
+            <button class="nav-btn next-btn" onclick="slide('v-slider', 340)">&#10095;</button>
         </div>
 
         <h2 class="section-title">Cinematic Projects</h2>
         <div class="slider-wrapper">
-            <button class="nav-btn prev-btn" onclick="slide('h-slider', -500)">&#10094;</button>
+            <button class="nav-btn prev-btn" onclick="slide('h-slider', -520)">&#10094;</button>
             <div class="video-slider" id="h-slider">
                 <div class="slider-card h-card">
                     <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 2.59.00 PM.mp4" type="video/mp4"></video></div>
                     <div class="label">AI CINEMATIC 01</div>
                 </div>
                 <div class="slider-card h-card">
-                    <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 2.59.03 PM.mp4" type="video/mp4"></video></div>
-                    <div class="label">AI CINEMATIC 02</div>
-                </div>
-                <div class="slider-card h-card">
-                    <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.03.04 PM.mp4" type="video/mp4"></video></div>
-                    <div class="label">AI CINEMATIC 03</div>
-                </div>
-                <div class="slider-card h-card">
                     <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.44 PM.mp4" type="video/mp4"></video></div>
                     <div class="label">VOID CHRONICLES</div>
+                </div>
+                <div class="slider-card h-card">
+                    <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 2.59.03 PM.mp4" type="video/mp4"></video></div>
+                    <div class="label">AI CINEMATIC 02</div>
                 </div>
                 <div class="slider-card h-card">
                     <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM.mp4" type="video/mp4"></video></div>
                     <div class="label">ATMOSPHERIC REVERIE</div>
                 </div>
+                <div class="slider-card h-card">
+                    <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.03.04 PM.mp4" type="video/mp4"></video></div>
+                    <div class="label">AI CINEMATIC 03</div>
+                </div>
             </div>
-            <button class="nav-btn next-btn" onclick="slide('h-slider', 500)">&#10095;</button>
+            <button class="nav-btn next-btn" onclick="slide('h-slider', 520)">&#10095;</button>
         </div>
 
     </div>
@@ -190,17 +201,25 @@
             <form action="https://formsubmit.co/amanhakim037@gmail.com" method="POST">
                 <input type="text" name="_honey" style="display:none">
                 <input type="hidden" name="_captcha" value="false">
+                
                 <input type="text" name="name" placeholder="Full Name" required>
                 <input type="email" name="email" placeholder="Email Address" required>
                 <textarea name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+                
                 <button type="submit" class="submit-btn">SEND MESSAGE</button>
             </form>
+
+            <div class="contact-info">
+                <p>WHATSAPP / CALL</p>
+                <a href="tel:+919373242452">+91 9373242452</a>
+            </div>
         </div>
     </section>
 
-    <footer>&copy; 2026 DOOMATIONS STUDIO</footer>
+    <footer>&copy; 2026 DOOMATIONS STUDIO | ALL RIGHTS RESERVED</footer>
 
     <script>
+        // Stars background logic
         const starsContainer = document.getElementById('stars');
         for (let i = 0; i < 40; i++) {
             const star = document.createElement('div');
@@ -213,23 +232,28 @@
             starsContainer.appendChild(star);
         }
 
+        // Slide logic
         function slide(id, amount) {
             const slider = document.getElementById(id);
             slider.scrollBy({ left: amount, behavior: 'smooth' });
         }
 
+        // Mouse Drag Logic
         const sliders = document.querySelectorAll('.video-slider');
         sliders.forEach(slider => {
             let isDown = false; let startX; let scrollLeft;
             slider.addEventListener('mousedown', (e) => {
                 isDown = true; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
+                slider.style.cursor = 'grabbing';
             });
-            slider.addEventListener('mouseleave', () => isDown = false);
-            slider.addEventListener('mouseup', () => isDown = false);
+            slider.addEventListener('mouseleave', () => { isDown = false; slider.style.cursor = 'grab'; });
+            slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'grab'; });
             slider.addEventListener('mousemove', (e) => {
-                if (!isDown) return; e.preventDefault();
+                if (!isDown) return;
+                e.preventDefault();
                 const x = e.pageX - slider.offsetLeft;
-                const walk = (x - startX) * 2; slider.scrollLeft = scrollLeft - walk;
+                const walk = (x - startX) * 2;
+                slider.scrollLeft = scrollLeft - walk;
             });
         });
     </script>
