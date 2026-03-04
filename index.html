@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doomations | Elite AI Video Production</title>
+    <title>Doomations | AI Visual Artist Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
@@ -11,11 +11,12 @@
     <style>
         :root {
             --bg: #000000;
-            --card-bg: rgba(15, 15, 15, 0.7);
+            --card-bg: rgba(15, 15, 15, 0.8);
             --primary: #00f2ff;
             --accent: #7000ff;
+            --yt-red: #FF0000;
             --text: #ffffff;
-            --text-dim: #b0b0b0;
+            --text-dim: #777;
         }
 
         * { box-sizing: border-box; }
@@ -27,18 +28,16 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            /* Starry Background Animation */
+            background-image: radial-gradient(circle at center, #111 0%, #000 100%);
         }
 
-        /* --- STARFALL ANIMATION --- */
+        /* Moving Stars Animation */
         .stars-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-            overflow: hidden;
+            background: transparent;
         }
 
         .star {
@@ -50,13 +49,13 @@
         }
 
         @keyframes fall {
-            from { transform: translateY(-10vh); }
-            to { transform: translateY(110vh); }
+            from { transform: translateY(-10vh) translateX(0); }
+            to { transform: translateY(110vh) translateX(20px); }
         }
 
-        /* --- HERO SECTION --- */
+        /* Hero Section */
         header {
-            height: 70vh;
+            height: 50vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -66,16 +65,23 @@
             position: relative;
         }
 
+        .yt-icon {
+            color: var(--yt-red);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
         h1 {
             font-family: 'Syncopate', sans-serif;
-            font-size: clamp(1.8rem, 10vw, 5rem);
+            font-size: clamp(1.4rem, 8vw, 4rem);
             margin: 0;
             background: linear-gradient(to right, var(--primary), var(--accent), var(--primary));
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: clamp(5px, 2vw, 15px);
-            animation: shine 4s linear infinite;
+            animation: shine 3s linear infinite;
+            letter-spacing: clamp(4px, 2vw, 10px);
         }
 
         @keyframes shine {
@@ -83,43 +89,18 @@
         }
 
         .tagline { 
-            color: var(--primary); 
-            letter-spacing: 5px; 
-            font-size: 0.8rem; 
+            color: var(--text-dim); 
+            letter-spacing: 4px; 
+            font-size: 0.75rem; 
             margin-top: 15px; 
             font-weight: 600;
             text-transform: uppercase;
+            border: 1px solid #333;
+            padding: 5px 15px;
+            border-radius: 20px;
         }
 
-        .hero-desc {
-            max-width: 600px;
-            color: var(--text-dim);
-            font-size: 1rem;
-            margin-top: 20px;
-            line-height: 1.6;
-        }
-
-        /* --- HIGHLIGHT SECTION --- */
-        .highlight-bar {
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            padding: 2px 0;
-            margin: 40px 0;
-        }
-
-        .inner-bar {
-            background: #000;
-            padding: 15px;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .stat { text-align: center; }
-        .stat-val { display: block; font-weight: 900; color: var(--primary); font-size: 1.2rem; }
-        .stat-label { font-size: 0.6rem; color: var(--text-dim); text-transform: uppercase; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 15px; position: relative; }
 
         h2.section-title {
             font-size: 1.3rem;
@@ -128,9 +109,11 @@
             margin: 60px 0 30px 0;
             text-transform: uppercase;
             letter-spacing: 3px;
+            color: #fff;
+            text-shadow: 0 0 10px var(--accent);
         }
 
-        /* --- VIDEO GRIDS --- */
+        /* Video Grid Layouts */
         .vertical-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -138,7 +121,7 @@
         }
 
         @media (min-width: 768px) {
-            .vertical-grid { grid-template-columns: repeat(3, 1fr); }
+            .vertical-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
         }
 
         .horizontal-grid {
@@ -151,19 +134,20 @@
             .horizontal-grid { grid-template-columns: 1fr 1fr; }
         }
 
+        /* Professional Video Cards */
         .video-card {
             background: var(--card-bg);
             border-radius: 20px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            transition: 0.4s;
+            transition: all 0.4s ease;
         }
 
         .video-card:hover { 
+            transform: translateY(-10px);
             border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
         }
 
         .v-box { position: relative; width: 100%; padding-top: 177.77%; }
@@ -173,34 +157,42 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
         }
 
-        .label { padding: 15px; font-size: 0.8rem; color: var(--text); text-align: center; font-weight: 600; letter-spacing: 1px; }
-
-        /* --- CONTACT SECTION --- */
-        .contact-section {
-            background: rgba(5, 5, 5, 0.8);
-            padding: 80px 20px;
-            margin-top: 100px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(20px);
+        .label { 
+            padding: 15px; 
+            font-size: 0.8rem; 
+            color: var(--primary); 
+            text-align: center; 
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(to top, #000, transparent);
         }
 
-        .contact-container { max-width: 600px; margin: 0 auto; }
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(to bottom, #050505, #000);
+            padding: 80px 20px;
+            margin-top: 50px;
+            border-top: 1px solid #1a1a1a;
+            border-radius: 40px 40px 0 0;
+        }
+
+        .contact-container { max-width: 500px; margin: 0 auto; }
 
         input, textarea {
             width: 100%;
             padding: 18px;
-            margin-bottom: 20px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 15px;
+            background: #0f0f0f;
+            border: 1px solid #222;
             color: white;
             border-radius: 12px;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .submit-btn {
             width: 100%;
             padding: 18px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
+            background: linear-gradient(45deg, var(--accent), var(--primary));
             border: none;
             color: white;
             font-weight: 900;
@@ -208,37 +200,44 @@
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 2px;
-            transition: 0.3s;
-        }
-
-        .submit-btn:hover {
-            box-shadow: 0 0 30px var(--primary);
-            transform: scale(1.02);
         }
 
         .info-box {
             margin-top: 40px;
             padding: 25px;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid var(--accent);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #1a1a1a;
             border-radius: 20px;
             text-align: center;
         }
 
-        .info-box a { color: var(--primary); text-decoration: none; font-size: 1.3rem; font-weight: 800; }
+        .info-box a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
 
+        /* YouTube Channel Box Highlight */
         .yt-box {
             margin-top: 20px;
             padding: 25px;
-            background: linear-gradient(45deg, #330000, #000);
-            border: 1px solid #ff0000;
+            background: linear-gradient(135deg, #FF0000 0%, #800000 100%);
             border-radius: 20px;
             text-align: center;
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+            transition: 0.3s;
         }
 
-        .yt-box a { color: #ff4444; text-decoration: none; font-weight: 900; text-transform: uppercase; }
+        .yt-box a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+        }
 
-        footer { text-align: center; padding: 60px; font-size: 0.75rem; color: #555; letter-spacing: 2px; }
+        footer { text-align: center; padding: 50px; font-size: 0.8rem; color: #333; letter-spacing: 2px; }
 
     </style>
 </head>
@@ -247,46 +246,38 @@
     <div class="stars-container" id="stars"></div>
 
     <header>
+        <div class="yt-icon">▶ YouTube</div>
         <h1>DOOMATIONS</h1>
-        <p class="tagline">Next-Gen AI Cinematics</p>
-        <p class="hero-desc">Transforming imagination into high-fidelity visuals. Specialist in AI-driven storytelling, 3D environments, and cinematic animations.</p>
+        <p class="tagline">The Art of AI Cinematography</p>
     </header>
-
-    <div class="highlight-bar">
-        <div class="inner-bar">
-            <div class="stat"><span class="stat-val">4K UHD</span><span class="stat-label">Resolution</span></div>
-            <div class="stat"><span class="stat-val">AI DRIVEN</span><span class="stat-label">Technology</span></div>
-            <div class="stat"><span class="stat-val">24/7</span><span class="stat-label">Production</span></div>
-        </div>
-    </div>
 
     <div class="container">
         
-        <h2 class="section-title">Vertical Masterpieces</h2>
+        <h2 class="section-title">Vertical AI Shorts</h2>
         <div class="vertical-grid">
             <div class="video-card">
                 <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM(1).mp4" type="video/mp4"></video></div>
-                <div class="label">NEON CYBERPUNK 01</div>
+                <div class="label">NEURAL EXPLORATION 01</div>
             </div>
             <div class="video-card">
                 <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM(1).mp4" type="video/mp4"></video></div>
-                <div class="label">FUTURISTIC REEL 02</div>
+                <div class="label">NEURAL EXPLORATION 02</div>
             </div>
             <div class="video-card">
                 <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">AI MOTION SHOT 03</div>
+                <div class="label">NEURAL EXPLORATION 03</div>
             </div>
         </div>
 
-        <h2 class="section-title">Cinematic Landscape Productions</h2>
+        <h2 class="section-title">Cinematic Masterpieces</h2>
         <div class="horizontal-grid">
             <div class="video-card">
                 <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.44 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">EPIC WORLD BUILDING</div>
+                <div class="label">SPACE ODYSSEY CONCEPT</div>
             </div>
             <div class="video-card">
                 <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">ATMOSPHERIC ENVIRONMENTS</div>
+                <div class="label">FUTURE CITYSCAPE</div>
             </div>
         </div>
 
@@ -294,49 +285,50 @@
 
     <section class="contact-section">
         <div class="contact-container">
-            <h2 style="text-align:center; font-family: 'Syncopate'; font-size: 1.5rem; margin-bottom: 10px; color: var(--primary);">Start a Project</h2>
-            <p style="text-align:center; color: var(--text-dim); margin-bottom: 40px; font-size: 0.9rem;">Ready to bring your vision to life? Let's talk.</p>
+            <h2 style="text-align:center; font-family: 'Syncopate'; font-size: 1.4rem; margin-bottom: 40px; color: var(--primary);">Contact Now</h2>
             
             <form action="#">
-                <input type="text" placeholder="Your Full Name" required>
-                <input type="email" placeholder="Business Email" required>
-                <textarea rows="4" placeholder="Describe your vision or project requirements..."></textarea>
-                <button type="submit" class="submit-btn">Launch Inquiry</button>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <textarea rows="4" placeholder="Describe your project..."></textarea>
+                <button type="submit" class="submit-btn">Send Inquiry</button>
             </form>
 
             <div class="info-box">
-                <p style="margin:0 0 10px 0; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Direct Professional Line</p>
+                <p style="margin:0 0 10px 0; font-size: 0.75rem; color: #888; text-transform: uppercase;">Call For Collaboration</p>
                 <a href="tel:+919373242452">+91 9373242452</a>
             </div>
 
             <div class="yt-box">
-                <a href="https://youtube.com/@doomations" target="_blank">Explore YouTube Channel</a>
-                <p style="margin:10px 0 0 0; font-size: 0.7rem; color: #888;">AI Showcase & Behind the Scenes</p>
+                <a href="https://youtube.com/@doomations" target="_blank">Subscribe to Doomations</a>
+                <p style="margin:8px 0 0 0; font-size: 0.7rem; color: rgba(255,255,255,0.6);">Exclusive AI Content Every Week</p>
             </div>
             
         </div>
     </section>
 
     <footer>
-        &copy; 2026 DOOMATIONS STUDIO | REDEFINING VISUAL STORYTELLING
+        &copy; 2026 DOOMATIONS STUDIO | MADE WITH AI & CREATIVITY
     </footer>
 
     <script>
-        function createStars() {
-            const container = document.getElementById('stars');
-            for (let i = 0; i < 50; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                const size = Math.random() * 3 + 'px';
-                star.style.width = size;
-                star.style.height = size;
-                star.style.left = Math.random() * 100 + 'vw';
-                star.style.animationDuration = Math.random() * 3 + 2 + 's';
-                star.style.animationDelay = Math.random() * 5 + 's';
-                container.appendChild(star);
-            }
+        const starsContainer = document.getElementById('stars');
+        const starCount = 50;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            
+            // Random position and animation
+            const size = Math.random() * 3 + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            
+            starsContainer.appendChild(star);
         }
-        createStars();
     </script>
 
 </body>
