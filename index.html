@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doomations | AI Visual Artist Portfolio</title>
+    <title>Doomations | AI Cinematics & Visual Effects</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
@@ -11,10 +11,9 @@
     <style>
         :root {
             --bg: #000000;
-            --card-bg: rgba(15, 15, 15, 0.8);
+            --card-bg: rgba(10, 10, 10, 0.8);
             --primary: #00f2ff;
             --accent: #7000ff;
-            --yt-red: #FF0000;
             --text: #ffffff;
             --text-dim: #777;
         }
@@ -28,16 +27,18 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            /* Starry Background Animation */
-            background-image: radial-gradient(circle at center, #111 0%, #000 100%);
         }
 
-        /* Moving Stars Animation */
+        /* --- ANIMATED BACKGROUND (STARFALL) --- */
         .stars-container {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
-            background: transparent;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            overflow: hidden;
         }
 
         .star {
@@ -50,78 +51,105 @@
 
         @keyframes fall {
             from { transform: translateY(-10vh) translateX(0); }
-            to { transform: translateY(110vh) translateX(20px); }
+            to { transform: translateY(110vh) translateX(50px); }
         }
+
+        /* --- FLOATING YOUTUBE SYMBOL (TOP LEFT) --- */
+        .yt-float {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(255, 0, 0, 0.1);
+            padding: 10px 15px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .yt-float:hover {
+            background: rgba(255, 0, 0, 0.8);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+            transform: scale(1.1);
+        }
+
+        .yt-icon {
+            width: 24px;
+            height: 24px;
+            background: #ff0000;
+            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>') no-repeat center;
+            -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>') no-repeat center;
+            margin-right: 10px;
+        }
+
+        .yt-text { color: white; font-size: 0.8rem; font-weight: bold; font-family: 'Syncopate'; }
 
         /* Hero Section */
         header {
-            height: 50vh;
+            height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: 20px;
-            position: relative;
-        }
-
-        .yt-icon {
-            color: var(--yt-red);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            display: inline-block;
         }
 
         h1 {
             font-family: 'Syncopate', sans-serif;
-            font-size: clamp(1.4rem, 8vw, 4rem);
+            font-size: clamp(1.5rem, 9vw, 5rem);
             margin: 0;
-            background: linear-gradient(to right, var(--primary), var(--accent), var(--primary));
-            background-size: 200% auto;
+            background: linear-gradient(to right, var(--primary), #fff, var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shine 3s linear infinite;
-            letter-spacing: clamp(4px, 2vw, 10px);
+            letter-spacing: clamp(5px, 2vw, 15px);
+            animation: glow 3s infinite alternate;
         }
 
-        @keyframes shine {
-            to { background-position: 200% center; }
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(0,242,255,0.2)); }
+            to { filter: drop-shadow(0 0 20px rgba(112,0,255,0.5)); }
         }
 
-        .tagline { 
-            color: var(--text-dim); 
-            letter-spacing: 4px; 
-            font-size: 0.75rem; 
-            margin-top: 15px; 
-            font-weight: 600;
-            text-transform: uppercase;
-            border: 1px solid #333;
-            padding: 5px 15px;
-            border-radius: 20px;
+        .hero-desc {
+            max-width: 700px;
+            margin-top: 20px;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            line-height: 1.6;
+            color: #ccc;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 15px; position: relative; }
+        .highlight {
+            color: var(--primary);
+            font-weight: 900;
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 15px; }
 
         h2.section-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             border-left: 4px solid var(--accent);
             padding-left: 15px;
             margin: 60px 0 30px 0;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: #fff;
-            text-shadow: 0 0 10px var(--accent);
+            font-family: 'Syncopate';
         }
 
-        /* Video Grid Layouts */
+        /* Video Grids */
         .vertical-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 15px;
         }
 
         @media (min-width: 768px) {
-            .vertical-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+            .vertical-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         .horizontal-grid {
@@ -134,46 +162,34 @@
             .horizontal-grid { grid-template-columns: 1fr 1fr; }
         }
 
-        /* Professional Video Cards */
         .video-card {
             background: var(--card-bg);
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255,255,255,0.05);
             backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .video-card:hover { 
             transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
         }
 
         .v-box { position: relative; width: 100%; padding-top: 177.77%; }
         .h-box { position: relative; width: 100%; padding-top: 56.25%; }
 
-        video {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
-        }
+        video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 
-        .label { 
-            padding: 15px; 
-            font-size: 0.8rem; 
-            color: var(--primary); 
-            text-align: center; 
-            font-weight: 800;
-            letter-spacing: 1px;
-            background: linear-gradient(to top, #000, transparent);
-        }
+        .label { padding: 15px; font-size: 0.75rem; color: var(--primary); text-align: center; font-weight: 800; letter-spacing: 1px; }
 
         /* Contact Section */
         .contact-section {
-            background: linear-gradient(to bottom, #050505, #000);
+            background: rgba(5, 5, 5, 0.9);
             padding: 80px 20px;
-            margin-top: 50px;
-            border-top: 1px solid #1a1a1a;
-            border-radius: 40px 40px 0 0;
+            margin-top: 100px;
+            border-top: 1px solid #222;
         }
 
         .contact-container { max-width: 500px; margin: 0 auto; }
@@ -181,18 +197,18 @@
         input, textarea {
             width: 100%;
             padding: 18px;
-            margin-bottom: 15px;
-            background: #0f0f0f;
-            border: 1px solid #222;
+            margin-bottom: 20px;
+            background: #111;
+            border: 1px solid #333;
             color: white;
             border-radius: 12px;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
         .submit-btn {
             width: 100%;
             padding: 18px;
-            background: linear-gradient(45deg, var(--accent), var(--primary));
+            background: linear-gradient(45deg, var(--primary), var(--accent));
             border: none;
             color: white;
             font-weight: 900;
@@ -200,44 +216,23 @@
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 2px;
+            transition: 0.3s;
         }
+
+        .submit-btn:hover { transform: scale(1.02); box-shadow: 0 0 30px var(--accent); }
 
         .info-box {
             margin-top: 40px;
             padding: 25px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid #1a1a1a;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #222;
             border-radius: 20px;
             text-align: center;
         }
 
-        .info-box a {
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 800;
-        }
+        .info-box a { color: var(--primary); text-decoration: none; font-size: 1.3rem; font-weight: 900; }
 
-        /* YouTube Channel Box Highlight */
-        .yt-box {
-            margin-top: 20px;
-            padding: 25px;
-            background: linear-gradient(135deg, #FF0000 0%, #800000 100%);
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
-            transition: 0.3s;
-        }
-
-        .yt-box a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-size: 1.1rem;
-        }
-
-        footer { text-align: center; padding: 50px; font-size: 0.8rem; color: #333; letter-spacing: 2px; }
+        footer { text-align: center; padding: 60px; font-size: 0.7rem; color: #444; letter-spacing: 2px; }
 
     </style>
 </head>
@@ -245,39 +240,48 @@
 
     <div class="stars-container" id="stars"></div>
 
+    <a href="https://youtube.com/@doomations" target="_blank" class="yt-float">
+        <div class="yt-icon"></div>
+        <span class="yt-text">DOOMATIONS</span>
+    </a>
+
     <header>
-        <div class="yt-icon">▶ YouTube</div>
         <h1>DOOMATIONS</h1>
-        <p class="tagline">The Art of AI Cinematography</p>
+        <p class="tagline">The Future of AI Cinematography</p>
+        <p class="hero-desc">
+            Transforming imagination into <span class="highlight">Hyper-Realistic AI Visuals</span>. 
+            We specialize in <span class="highlight">Cinematic Storytelling</span>, 
+            Ultra-HQ Animations, and <span class="highlight">Future-Gen Art</span>.
+        </p>
     </header>
 
     <div class="container">
         
-        <h2 class="section-title">Vertical AI Shorts</h2>
+        <h2 class="section-title">Vertical Masterpieces</h2>
         <div class="vertical-grid">
             <div class="video-card">
                 <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM(1).mp4" type="video/mp4"></video></div>
-                <div class="label">NEURAL EXPLORATION 01</div>
+                <div class="label">NEURAL FLOW v1</div>
             </div>
             <div class="video-card">
                 <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM(1).mp4" type="video/mp4"></video></div>
-                <div class="label">NEURAL EXPLORATION 02</div>
+                <div class="label">CYBER GENESIS</div>
             </div>
             <div class="video-card">
                 <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">NEURAL EXPLORATION 03</div>
+                <div class="label">DREAMSCAPE 09</div>
             </div>
         </div>
 
-        <h2 class="section-title">Cinematic Masterpieces</h2>
+        <h2 class="section-title">Widescreen Worlds</h2>
         <div class="horizontal-grid">
             <div class="video-card">
                 <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.44 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">SPACE ODYSSEY CONCEPT</div>
+                <div class="label">THE VOID CHRONICLES</div>
             </div>
             <div class="video-card">
                 <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">FUTURE CITYSCAPE</div>
+                <div class="label">ATMOSPHERIC REVERIE</div>
             </div>
         </div>
 
@@ -285,33 +289,29 @@
 
     <section class="contact-section">
         <div class="contact-container">
-            <h2 style="text-align:center; font-family: 'Syncopate'; font-size: 1.4rem; margin-bottom: 40px; color: var(--primary);">Contact Now</h2>
+            <h2 style="text-align:center; font-family: 'Syncopate'; font-size: 1.5rem; margin-bottom: 10px;">Collaborate</h2>
+            <p style="text-align:center; color:#666; margin-bottom:40px;">Let's build the future of visuals together.</p>
             
             <form action="#">
                 <input type="text" placeholder="Full Name" required>
                 <input type="email" placeholder="Email Address" required>
-                <textarea rows="4" placeholder="Describe your project..."></textarea>
-                <button type="submit" class="submit-btn">Send Inquiry</button>
+                <textarea rows="4" placeholder="Describe your vision..."></textarea>
+                <button type="submit" class="submit-btn">Initialize Project</button>
             </form>
 
             <div class="info-box">
-                <p style="margin:0 0 10px 0; font-size: 0.75rem; color: #888; text-transform: uppercase;">Call For Collaboration</p>
+                <p style="margin:0 0 10px 0; font-size: 0.75rem; color: #555; text-transform: uppercase;">Direct Assistance</p>
                 <a href="tel:+919373242452">+91 9373242452</a>
             </div>
-
-            <div class="yt-box">
-                <a href="https://youtube.com/@doomations" target="_blank">Subscribe to Doomations</a>
-                <p style="margin:8px 0 0 0; font-size: 0.7rem; color: rgba(255,255,255,0.6);">Exclusive AI Content Every Week</p>
-            </div>
-            
         </div>
     </section>
 
     <footer>
-        &copy; 2026 DOOMATIONS STUDIO | MADE WITH AI & CREATIVITY
+        &copy; 2026 DOOMATIONS STUDIO | BEYOND HUMAN IMAGINATION
     </footer>
 
     <script>
+        // Starfall Generation Script
         const starsContainer = document.getElementById('stars');
         const starCount = 50;
 
@@ -319,17 +319,16 @@
             const star = document.createElement('div');
             star.className = 'star';
             
-            // Random position and animation
             const size = Math.random() * 3 + 'px';
             star.style.width = size;
             star.style.height = size;
+            
             star.style.left = Math.random() * 100 + 'vw';
-            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            star.style.animationDuration = Math.random() * 3 + 2 + 's';
             star.style.animationDelay = Math.random() * 5 + 's';
             
             starsContainer.appendChild(star);
         }
     </script>
-
 </body>
 </html>
