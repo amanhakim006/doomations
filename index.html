@@ -3,6 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doomations | AI Video Productions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #050505;
+            --card-bg: #0f0f0f;
+            --primary: #00f2ff; /* Cyber Blue */
+            --accent: #7000ff;  /* Deep Purple */
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Hero Styling */
+        header {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #111 0%, #050505 100%);
+            border-bottom: 1px solid #222;
+        }
+
+        h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(2rem, 8vw, 5rem);
+            margin: 0;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 15px;
+        }
+
+        .tagline {
+            color: var(--text-dim);
+            letter-spacing: 5px;
+            font-weight: 300;
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h2.section-title {
+            font-size: 1.5rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* --- VERTICAL SECTION GRID --- */
+        .vertical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .v-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .v-card:hover {
+            transform: scale(1.03);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 242, 255, 0.1);
+        }
+
+        .v-video-box {
+            position: relative;
+            width: 100%;
+            padding-top: 177.77%; /* 9:16 Ratio */
+        }
+
+        /* --- HORIZONTAL SECTION GRID --- */
+        .horizontal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            gap: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .horizontal-grid { grid-template-columns: 1fr; }
+        }
+
+        .h-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: 0.4s;
+        }
+
+        .h-card:hover {
+            border-color: var(--accent);
+        }
+
+        .h-video-box {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Ratio */
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .label {
+            padding: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            text-align: center;
+        }
+
+        /* Button & Footer */
+        .footer-cta {
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .btn {
+            padding: 18px 45px;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 30px var(--primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.8rem;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DOOMATIONS</h1>
+        <p class="tagline">AI VISUAL ARTIST PORTFOLIO</p>
+    </header>
+
+    <div class="container">
+        
+        <h2 class="section-title">Vertical Shorts / Reels</h2>
+        <div class="vertical-grid">
+            <div class="v-card">
+                <div class="v-video-box">
+                    <video controls muted loop>
+                        <source src="WhatsApp Video 2026-02-22 at 4.06.45 PM(1).mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="label">AI VERTICAL SHOT 01</div>
+            </div>
+
+            <div class="v-card">
+                <div class="v-video-box">
+                    <video controls muted loop>
+                        <source src="WhatsApp Video 2026-02-22 at 4.04.41 PM.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="label">AI VERTICAL SHOT 02</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Cinematic Landscape</h2>
+        <div class="horizontal-grid">
+            <div class="h-card">
+                <div class="h-video-box">
+                    <video controls muted loop>
+                        <source src="WhatsApp Video 2026-02-22 at 4.06.44 PM.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="label">CINEMATIC ENVIRONMENT 01</div>
+            </div>
+
+            <div class="h-card">
+                <div class="h-video-box">
+                    <video controls muted loop>
+                        <source src="WhatsApp Video 2026-02-22 at 4.06.45 PM.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="label">CINEMATIC ENVIRONMENT 02</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-cta">
+        <a href="https://youtube.com/@AmanHakim" target="_blank" class="btn">SUBSCRIBE ON YOUTUBE</a>
+    </div>
+
+    <footer>
+        &copy; 2026 DOOMATIONS STUDIO
+    </footer>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doomations Pro | Ultra-High Quality AI Videos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
