@@ -45,7 +45,7 @@
         .yt-icon { width: 18px; height: 18px; background: red; margin-right: 8px; clip-path: polygon(0% 0%, 100% 50%, 0% 100%); }
         .yt-text { color: white; font-size: 0.7rem; font-weight: bold; font-family: 'Syncopate'; }
 
-        header { padding: 60px 20px 20px; text-align: center; }
+        header { padding: 80px 20px 30px; text-align: center; }
         h1 {
             font-family: 'Syncopate', sans-serif;
             font-size: clamp(1.4rem, 8vw, 4rem);
@@ -53,50 +53,50 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             letter-spacing: 5px; text-align: center; margin: 0;
         }
+        .hero-desc { margin-top: 15px; font-size: 0.9rem; color: #ccc; letter-spacing: 1px; }
+        .highlight { color: var(--primary); font-weight: 800; }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        h2.section-title { font-family: 'Syncopate'; font-size: 1rem; border-left: 3px solid var(--primary); padding-left: 10px; margin: 30px 0 15px; }
+        h2.section-title { font-family: 'Syncopate'; font-size: 1rem; border-left: 3px solid var(--primary); padding-left: 10px; margin: 40px 0 20px; }
 
-        /* SLIDER SECTION */
+        /* SLIDER & GRID */
         .video-slider {
             display: flex;
             overflow-x: auto;
             gap: 15px;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
             scroll-snap-type: x mandatory;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary) transparent;
+            scrollbar-width: none; /* Hide scrollbar for clean look */
         }
-        .video-slider::-webkit-scrollbar { height: 4px; }
-        .video-slider::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+        .video-slider::-webkit-scrollbar { display: none; }
 
         .slider-card {
-            flex: 0 0 70%; /* Mobile par card ki width */
+            flex: 0 0 85%;
             scroll-snap-align: start;
             background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
             border: 1px solid #222;
         }
-        @media (min-width: 768px) { .slider-card { flex: 0 0 30%; } }
+        @media (min-width: 768px) { .slider-card { flex: 0 0 45%; } }
 
         .v-box { position: relative; width: 100%; padding-top: 177%; }
         .h-box { position: relative; width: 100%; padding-top: 56.25%; }
         video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-        .label { padding: 10px; font-size: 0.7rem; text-align: center; color: var(--primary); font-weight: bold; }
+        .label { padding: 12px; font-size: 0.75rem; text-align: center; color: var(--primary); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Horizontal Grid */
-        .horizontal-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        @media (min-width: 768px) { .horizontal-grid { grid-template-columns: 1fr 1fr; } }
+        /* Vertical Grid (Reels) */
+        .vertical-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        @media (min-width: 768px) { .vertical-grid { grid-template-columns: repeat(3, 1fr); } }
 
         /* Contact */
-        .contact-section { background: rgba(5,5,5,0.9); padding: 40px 20px; margin-top: 40px; border-top: 1px solid #222; }
-        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid #333; color: #fff; border-radius: 8px; }
-        .submit-btn { width: 100%; padding: 15px; background: linear-gradient(45deg, var(--primary), var(--accent)); border: none; color: #fff; font-weight: bold; border-radius: 8px; cursor: pointer; }
-        .info-box { margin-top: 20px; text-align: center; padding: 15px; background: #0a0a0a; border-radius: 10px; }
-        .info-box a { color: var(--primary); text-decoration: none; font-weight: bold; }
+        .contact-section { background: rgba(5,5,5,0.95); padding: 50px 20px; margin-top: 60px; border-top: 1px solid #222; }
+        input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: #111; border: 1px solid #333; color: #fff; border-radius: 8px; }
+        .submit-btn { width: 100%; padding: 16px; background: linear-gradient(45deg, var(--primary), var(--accent)); border: none; color: #fff; font-weight: bold; border-radius: 8px; cursor: pointer; text-transform: uppercase; }
+        .info-box { margin-top: 25px; text-align: center; padding: 20px; background: #0a0a0a; border-radius: 12px; border: 1px solid #222; }
+        .info-box a { color: var(--primary); text-decoration: none; font-weight: bold; font-size: 1.1rem; }
 
-        footer { text-align: center; padding: 30px; font-size: 0.6rem; color: #555; }
+        footer { text-align: center; padding: 40px; font-size: 0.6rem; color: #555; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -110,39 +110,39 @@
 
     <header>
         <h1>DOOMATIONS</h1>
-        <p style="color: #777; font-size: 0.8rem; margin-top: 10px;">PREMIUM AI VISUALS & CINEMATICS</p>
+        <p class="hero-desc">Transforming imagination into <span class="highlight">Ultra-HQ AI Visuals</span></p>
     </header>
 
     <div class="container">
         
-        <h2 class="section-title">Vertical Shorts (Slide)</h2>
+        <h2 class="section-title">Cinematic Projects (Slide)</h2>
         <div class="video-slider">
             <div class="slider-card">
-                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.03.29 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">NEURAL ART 01</div>
+                <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.03.29 PM.mp4" type="video/mp4"></video></div>
+                <div class="label">NEURAL CHRONICLE 01</div>
             </div>
             <div class="slider-card">
-                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.02.56 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">NEURAL ART 02</div>
+                <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.02.56 PM.mp4" type="video/mp4"></video></div>
+                <div class="label">CYBER REALM 02</div>
             </div>
             <div class="slider-card">
-                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.02.47 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">NEURAL ART 03</div>
+                <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.02.47 PM.mp4" type="video/mp4"></video></div>
+                <div class="label">FUTURE VISION 03</div>
             </div>
             <div class="slider-card">
-                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM(1).mp4" type="video/mp4"></video></div>
-                <div class="label">PREVIOUS REEL</div>
-            </div>
-        </div>
-
-        <h2 class="section-title">Cinematic Projects</h2>
-        <div class="horizontal-grid">
-            <div class="video-card slider-card" style="flex:none;">
                 <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.44 PM.mp4" type="video/mp4"></video></div>
                 <div class="label">VOID CHRONICLES</div>
             </div>
-            <div class="video-card slider-card" style="flex:none;">
-                <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM.mp4" type="video/mp4"></video></div>
+        </div>
+
+        <h2 class="section-title">Vertical Masterpieces</h2>
+        <div class="vertical-grid">
+            <div class="slider-card" style="flex:none; width:100%;">
+                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM(1).mp4" type="video/mp4"></video></div>
+                <div class="label">NEURAL FLOW</div>
+            </div>
+            <div class="slider-card" style="flex:none; width:100%;">
+                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM.mp4" type="video/mp4"></video></div>
                 <div class="label">ATMOSPHERIC REVERIE</div>
             </div>
         </div>
@@ -151,7 +151,7 @@
 
     <section class="contact-section">
         <div class="container" style="max-width: 500px;">
-            <h2 style="text-align:center; font-family: 'Syncopate'; font-size: 1.1rem;">Get In Touch</h2>
+            <h2 style="text-align:center; font-family: 'Syncopate'; font-size: 1.1rem; margin-bottom: 20px;">Get In Touch</h2>
             <form>
                 <input type="text" placeholder="Name" required>
                 <input type="email" placeholder="Email" required>
