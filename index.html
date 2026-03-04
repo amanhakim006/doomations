@@ -18,7 +18,7 @@
             --text-dim: #777;
         }
 
-        * { box-sizing: border-box; transition: all 0.3s ease; }
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -29,47 +29,57 @@
             overflow-x: hidden;
         }
 
+        /* Hero Section - Fixed for Mobile */
         header {
-            height: 60vh;
+            height: 40vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
+            padding: 10px;
             background: radial-gradient(circle at center, #111 0%, #000 100%);
         }
 
         h1 {
             font-family: 'Syncopate', sans-serif;
-            font-size: clamp(1.8rem, 10vw, 4rem);
+            /* Improved Mobile Sizing */
+            font-size: clamp(1.4rem, 8vw, 4rem);
             margin: 0;
             background: linear-gradient(to right, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 10px;
+            /* Reduced letter-spacing for mobile compatibility */
+            letter-spacing: clamp(4px, 2vw, 10px);
+            width: 100%;
+            text-align: center;
+        }
+
+        .tagline { 
+            color: var(--text-dim); 
+            letter-spacing: 2px; 
+            font-size: 0.7rem; 
+            margin-top: 10px; 
             text-transform: uppercase;
         }
 
-        .tagline { color: var(--text-dim); letter-spacing: 5px; font-size: 0.8rem; margin-top: 15px; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 15px; }
 
         h2.section-title {
             font-size: 1.1rem;
             border-left: 3px solid var(--primary);
             padding-left: 12px;
-            margin: 60px 0 30px 0;
+            margin: 40px 0 20px 0;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             color: var(--primary);
         }
 
         /* Video Grids */
         .vertical-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+            gap: 15px;
         }
 
         @media (min-width: 768px) {
@@ -79,7 +89,7 @@
         .horizontal-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 25px;
+            gap: 20px;
         }
 
         @media (min-width: 768px) {
@@ -88,17 +98,13 @@
 
         .video-card {
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
             border: 1px solid #1a1a1a;
-            position: relative;
+            transition: 0.3s;
         }
 
-        .video-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.15);
-        }
+        .video-card:hover { border-color: var(--primary); }
 
         .v-box { position: relative; width: 100%; padding-top: 177.77%; }
         .h-box { position: relative; width: 100%; padding-top: 56.25%; }
@@ -107,65 +113,81 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
         }
 
-        .label { padding: 15px; font-size: 0.7rem; color: var(--text-dim); text-align: center; font-weight: 700; letter-spacing: 1px; }
+        .label { padding: 10px; font-size: 0.7rem; color: var(--text-dim); text-align: center; font-weight: 600; }
+
+        /* Contact Section */
+        .contact-section {
+            background: #050505;
+            padding: 60px 20px;
+            margin-top: 50px;
+            border-top: 1px solid #111;
+            border-radius: 30px 30px 0 0;
+        }
 
         .contact-container { max-width: 500px; margin: 0 auto; }
 
-        .contact-container h2 {
-            text-align: center;
-            font-family: 'Syncopate';
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            color: var(--primary);
-        }
-
         input, textarea {
             width: 100%;
-            padding: 18px;
+            padding: 15px;
             margin-bottom: 15px;
-            background: #000;
+            background: #111;
             border: 1px solid #222;
             color: white;
-            border-radius: 10px;
-            font-family: inherit;
-        }
-
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: #0a0a0a;
+            border-radius: 8px;
+            font-size: 0.9rem;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 18px;
+            padding: 15px;
             background: linear-gradient(45deg, var(--primary), var(--accent));
             border: none;
             color: white;
-            font-weight: 900;
-            border-radius: 10px;
+            font-weight: bold;
+            border-radius: 8px;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
-        .phone-box {
-            text-align: center;
-            margin-top: 40px;
-            padding: 25px;
-            background: rgba(0, 242, 255, 0.03);
+        .info-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
             border-radius: 15px;
+            text-align: center;
         }
 
-        .phone-box p { margin: 0 0 10px 0; font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; }
-        .phone-box a {
-            color: var(--text);
+        .info-box a {
+            color: var(--primary);
             text-decoration: none;
-            font-size: 1.4rem;
-            font-weight: 900;
+            font-size: 1.1rem;
+            font-weight: 700;
         }
 
-        footer { text-align: center; padding: 50px; font-size: 0.7rem; color: #333; letter-spacing: 2px; }
+        /* YouTube Channel Box */
+        .yt-box {
+            margin-top: 15px;
+            padding: 20px;
+            background: linear-gradient(45deg, #220000, #111);
+            border: 1px solid #440000;
+            border-radius: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .yt-box:hover { border-color: #ff0000; }
+
+        .yt-box a {
+            color: #ff4444;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        footer { text-align: center; padding: 40px; font-size: 0.7rem; color: #444; letter-spacing: 1px; }
 
     </style>
 </head>
@@ -173,7 +195,7 @@
 
     <header>
         <h1>DOOMATIONS</h1>
-        <p class="tagline">PREMIUM AI VIDEO PRODUCTIONS</p>
+        <p class="tagline">PREMIUM AI VISUALS</p>
     </header>
 
     <div class="container">
@@ -181,28 +203,28 @@
         <h2 class="section-title">Vertical Shorts</h2>
         <div class="vertical-grid">
             <div class="video-card">
-                <div class="v-box"><video controls muted loop><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM(1).mp4" type="video/mp4"></video></div>
+                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM(1).mp4" type="video/mp4"></video></div>
                 <div class="label">AI REEL 01</div>
             </div>
             <div class="video-card">
-                <div class="v-box"><video controls muted loop><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM(1).mp4" type="video/mp4"></video></div>
+                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM(1).mp4" type="video/mp4"></video></div>
                 <div class="label">AI REEL 02</div>
             </div>
             <div class="video-card">
-                <div class="v-box"><video controls muted loop><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM.mp4" type="video/mp4"></video></div>
+                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM.mp4" type="video/mp4"></video></div>
                 <div class="label">AI REEL 03</div>
             </div>
         </div>
 
-        <h2 class="section-title">Cinematic Showcase</h2>
+        <h2 class="section-title">Cinematic Projects</h2>
         <div class="horizontal-grid">
             <div class="video-card">
-                <div class="h-box"><video controls muted loop><source src="WhatsApp Video 2026-02-22 at 4.06.44 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">CINEMATIC SHOT 01</div>
+                <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.44 PM.mp4" type="video/mp4"></video></div>
+                <div class="label">CINEMATIC SCENE 01</div>
             </div>
             <div class="video-card">
-                <div class="h-box"><video controls muted loop><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">CINEMATIC SHOT 02</div>
+                <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM.mp4" type="video/mp4"></video></div>
+                <div class="label">CINEMATIC SCENE 02</div>
             </div>
         </div>
 
@@ -210,58 +232,30 @@
 
     <section class="contact-section">
         <div class="contact-container">
-            <h2>GET IN TOUCH</h2>
+            <h2 style="text-align:center; font-family: 'Syncopate'; font-size: 1.2rem; margin-bottom: 30px;">Get In Touch</h2>
+            
             <form action="#">
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <textarea rows="5" placeholder="Tell me about your project..."></textarea>
-                <button type="submit" class="submit-btn">SEND MESSAGE</button>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="4" placeholder="How can I help you?"></textarea>
+                <button type="submit" class="submit-btn">Send Message</button>
             </form>
 
-            <div class="phone-box">
-                <p>Call / WhatsApp</p>
+            <div class="info-box">
+                <p style="margin:0 0 10px 0; font-size: 0.75rem; color: #555; text-transform: uppercase;">Direct Line</p>
                 <a href="tel:+919373242452">+91 9373242452</a>
             </div>
+
+            <div class="yt-box">
+                <a href="https://youtube.com/@doomations" target="_blank">View YouTube Channel</a>
+                <p style="margin:8px 0 0 0; font-size: 0.65rem; color: #666;">For more AI content & tutorials</p>
+            </div>
+            
         </div>
     </section>
 
-        /* YouTube Channel Box */
-        .yt-box-container {
-            margin: 80px 0;
-            padding: 40px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .yt-box-container h3 { font-family: 'Syncopate'; font-size: 1.2rem; margin-bottom: 10px; }
-        .yt-box-container p { color: var(--text-dim); margin-bottom: 25px; font-size: 0.9rem; }
-
-        .yt-btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: #ff0000;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 900;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-        }
-
-        .yt-btn:hover { background: #cc0000; transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); }
-
-        /* Contact Section */
-        .contact-section {
-            background: #050505;
-            padding: 80px 20px;
-            border-top: 1px solid #111;
-        }
-
     <footer>
-        &copy; 2026 DOOMATIONS STUDIO | POWERED BY AI
+        &copy; 2026 DOOMATIONS | POWERED BY AI TECHNOLOGY
     </footer>
 
 </body>
