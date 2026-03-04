@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doomations | AI Video Portfolio</title>
+    <title>Doomations | Elite AI Video Production</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
@@ -11,11 +11,11 @@
     <style>
         :root {
             --bg: #000000;
-            --card-bg: #0a0a0a;
+            --card-bg: rgba(15, 15, 15, 0.7);
             --primary: #00f2ff;
             --accent: #7000ff;
             --text: #ffffff;
-            --text-dim: #777;
+            --text-dim: #b0b0b0;
         }
 
         * { box-sizing: border-box; }
@@ -29,67 +29,122 @@
             overflow-x: hidden;
         }
 
-        /* Hero Section - Fixed for Mobile */
+        /* --- STARFALL ANIMATION --- */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            from { transform: translateY(-10vh); }
+            to { transform: translateY(110vh); }
+        }
+
+        /* --- HERO SECTION --- */
         header {
-            height: 40vh;
+            height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 10px;
-            background: radial-gradient(circle at center, #111 0%, #000 100%);
+            padding: 20px;
+            position: relative;
         }
 
         h1 {
             font-family: 'Syncopate', sans-serif;
-            /* Improved Mobile Sizing */
-            font-size: clamp(1.4rem, 8vw, 4rem);
+            font-size: clamp(1.8rem, 10vw, 5rem);
             margin: 0;
-            background: linear-gradient(to right, var(--primary), var(--accent));
+            background: linear-gradient(to right, var(--primary), var(--accent), var(--primary));
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            /* Reduced letter-spacing for mobile compatibility */
-            letter-spacing: clamp(4px, 2vw, 10px);
-            width: 100%;
-            text-align: center;
+            letter-spacing: clamp(5px, 2vw, 15px);
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
         }
 
         .tagline { 
-            color: var(--text-dim); 
-            letter-spacing: 2px; 
-            font-size: 0.7rem; 
-            margin-top: 10px; 
+            color: var(--primary); 
+            letter-spacing: 5px; 
+            font-size: 0.8rem; 
+            margin-top: 15px; 
+            font-weight: 600;
             text-transform: uppercase;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 15px; }
+        .hero-desc {
+            max-width: 600px;
+            color: var(--text-dim);
+            font-size: 1rem;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        /* --- HIGHLIGHT SECTION --- */
+        .highlight-bar {
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            padding: 2px 0;
+            margin: 40px 0;
+        }
+
+        .inner-bar {
+            background: #000;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat { text-align: center; }
+        .stat-val { display: block; font-weight: 900; color: var(--primary); font-size: 1.2rem; }
+        .stat-label { font-size: 0.6rem; color: var(--text-dim); text-transform: uppercase; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
 
         h2.section-title {
-            font-size: 1.1rem;
-            border-left: 3px solid var(--primary);
-            padding-left: 12px;
-            margin: 40px 0 20px 0;
+            font-size: 1.3rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+            margin: 60px 0 30px 0;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--primary);
+            letter-spacing: 3px;
         }
 
-        /* Video Grids */
+        /* --- VIDEO GRIDS --- */
         .vertical-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
-            gap: 15px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
 
         @media (min-width: 768px) {
-            .vertical-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+            .vertical-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         .horizontal-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 25px;
         }
 
         @media (min-width: 768px) {
@@ -98,13 +153,18 @@
 
         .video-card {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 20px;
             overflow: hidden;
-            border: 1px solid #1a1a1a;
-            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: 0.4s;
         }
 
-        .video-card:hover { border-color: var(--primary); }
+        .video-card:hover { 
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
+        }
 
         .v-box { position: relative; width: 100%; padding-top: 177.77%; }
         .h-box { position: relative; width: 100%; padding-top: 56.25%; }
@@ -113,118 +173,120 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
         }
 
-        .label { padding: 10px; font-size: 0.7rem; color: var(--text-dim); text-align: center; font-weight: 600; }
+        .label { padding: 15px; font-size: 0.8rem; color: var(--text); text-align: center; font-weight: 600; letter-spacing: 1px; }
 
-        /* Contact Section */
+        /* --- CONTACT SECTION --- */
         .contact-section {
-            background: #050505;
-            padding: 60px 20px;
-            margin-top: 50px;
-            border-top: 1px solid #111;
-            border-radius: 30px 30px 0 0;
+            background: rgba(5, 5, 5, 0.8);
+            padding: 80px 20px;
+            margin-top: 100px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
         }
 
-        .contact-container { max-width: 500px; margin: 0 auto; }
+        .contact-container { max-width: 600px; margin: 0 auto; }
 
         input, textarea {
             width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            background: #111;
-            border: 1px solid #222;
+            padding: 18px;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
             color: white;
-            border-radius: 8px;
-            font-size: 0.9rem;
+            border-radius: 12px;
+            font-size: 1rem;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 15px;
+            padding: 18px;
             background: linear-gradient(45deg, var(--primary), var(--accent));
             border: none;
             color: white;
-            font-weight: bold;
-            border-radius: 8px;
+            font-weight: 900;
+            border-radius: 12px;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .info-box {
-            margin-top: 30px;
-            padding: 20px;
-            background: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            border-radius: 15px;
-            text-align: center;
-        }
-
-        .info-box a {
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 700;
-        }
-
-        /* YouTube Channel Box */
-        .yt-box {
-            margin-top: 15px;
-            padding: 20px;
-            background: linear-gradient(45deg, #220000, #111);
-            border: 1px solid #440000;
-            border-radius: 15px;
-            text-align: center;
+            letter-spacing: 2px;
             transition: 0.3s;
         }
 
-        .yt-box:hover { border-color: #ff0000; }
-
-        .yt-box a {
-            color: #ff4444;
-            text-decoration: none;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .submit-btn:hover {
+            box-shadow: 0 0 30px var(--primary);
+            transform: scale(1.02);
         }
 
-        footer { text-align: center; padding: 40px; font-size: 0.7rem; color: #444; letter-spacing: 1px; }
+        .info-box {
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .info-box a { color: var(--primary); text-decoration: none; font-size: 1.3rem; font-weight: 800; }
+
+        .yt-box {
+            margin-top: 20px;
+            padding: 25px;
+            background: linear-gradient(45deg, #330000, #000);
+            border: 1px solid #ff0000;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .yt-box a { color: #ff4444; text-decoration: none; font-weight: 900; text-transform: uppercase; }
+
+        footer { text-align: center; padding: 60px; font-size: 0.75rem; color: #555; letter-spacing: 2px; }
 
     </style>
 </head>
 <body>
 
+    <div class="stars-container" id="stars"></div>
+
     <header>
         <h1>DOOMATIONS</h1>
-        <p class="tagline">PREMIUM AI VISUALS</p>
+        <p class="tagline">Next-Gen AI Cinematics</p>
+        <p class="hero-desc">Transforming imagination into high-fidelity visuals. Specialist in AI-driven storytelling, 3D environments, and cinematic animations.</p>
     </header>
+
+    <div class="highlight-bar">
+        <div class="inner-bar">
+            <div class="stat"><span class="stat-val">4K UHD</span><span class="stat-label">Resolution</span></div>
+            <div class="stat"><span class="stat-val">AI DRIVEN</span><span class="stat-label">Technology</span></div>
+            <div class="stat"><span class="stat-val">24/7</span><span class="stat-label">Production</span></div>
+        </div>
+    </div>
 
     <div class="container">
         
-        <h2 class="section-title">Vertical Shorts</h2>
+        <h2 class="section-title">Vertical Masterpieces</h2>
         <div class="vertical-grid">
             <div class="video-card">
                 <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM(1).mp4" type="video/mp4"></video></div>
-                <div class="label">AI REEL 01</div>
+                <div class="label">NEON CYBERPUNK 01</div>
             </div>
             <div class="video-card">
                 <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM(1).mp4" type="video/mp4"></video></div>
-                <div class="label">AI REEL 02</div>
+                <div class="label">FUTURISTIC REEL 02</div>
             </div>
             <div class="video-card">
                 <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">AI REEL 03</div>
+                <div class="label">AI MOTION SHOT 03</div>
             </div>
         </div>
 
-        <h2 class="section-title">Cinematic Projects</h2>
+        <h2 class="section-title">Cinematic Landscape Productions</h2>
         <div class="horizontal-grid">
             <div class="video-card">
                 <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.44 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">CINEMATIC SCENE 01</div>
+                <div class="label">EPIC WORLD BUILDING</div>
             </div>
             <div class="video-card">
                 <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">CINEMATIC SCENE 02</div>
+                <div class="label">ATMOSPHERIC ENVIRONMENTS</div>
             </div>
         </div>
 
@@ -232,31 +294,50 @@
 
     <section class="contact-section">
         <div class="contact-container">
-            <h2 style="text-align:center; font-family: 'Syncopate'; font-size: 1.2rem; margin-bottom: 30px;">Get In Touch</h2>
+            <h2 style="text-align:center; font-family: 'Syncopate'; font-size: 1.5rem; margin-bottom: 10px; color: var(--primary);">Start a Project</h2>
+            <p style="text-align:center; color: var(--text-dim); margin-bottom: 40px; font-size: 0.9rem;">Ready to bring your vision to life? Let's talk.</p>
             
             <form action="#">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea rows="4" placeholder="How can I help you?"></textarea>
-                <button type="submit" class="submit-btn">Send Message</button>
+                <input type="text" placeholder="Your Full Name" required>
+                <input type="email" placeholder="Business Email" required>
+                <textarea rows="4" placeholder="Describe your vision or project requirements..."></textarea>
+                <button type="submit" class="submit-btn">Launch Inquiry</button>
             </form>
 
             <div class="info-box">
-                <p style="margin:0 0 10px 0; font-size: 0.75rem; color: #555; text-transform: uppercase;">Direct Line</p>
+                <p style="margin:0 0 10px 0; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Direct Professional Line</p>
                 <a href="tel:+919373242452">+91 9373242452</a>
             </div>
 
             <div class="yt-box">
-                <a href="https://youtube.com/@doomations" target="_blank">View YouTube Channel</a>
-                <p style="margin:8px 0 0 0; font-size: 0.65rem; color: #666;">For more AI content & tutorials</p>
+                <a href="https://youtube.com/@doomations" target="_blank">Explore YouTube Channel</a>
+                <p style="margin:10px 0 0 0; font-size: 0.7rem; color: #888;">AI Showcase & Behind the Scenes</p>
             </div>
             
         </div>
     </section>
 
     <footer>
-        &copy; 2026 DOOMATIONS | POWERED BY AI TECHNOLOGY
+        &copy; 2026 DOOMATIONS STUDIO | REDEFINING VISUAL STORYTELLING
     </footer>
+
+    <script>
+        function createStars() {
+            const container = document.getElementById('stars');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 'px';
+                star.style.width = size;
+                star.style.height = size;
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.animationDuration = Math.random() * 3 + 2 + 's';
+                star.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(star);
+            }
+        }
+        createStars();
+    </script>
 
 </body>
 </html>
