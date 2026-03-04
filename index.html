@@ -59,7 +59,7 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         h2.section-title { font-family: 'Syncopate'; font-size: 1rem; border-left: 3px solid var(--primary); padding-left: 10px; margin: 40px 0 20px; }
 
-        /* VIDEO SLIDER (Shared Style) */
+        /* VIDEO SLIDER */
         .video-slider {
             display: flex;
             overflow-x: auto;
@@ -87,7 +87,7 @@
 
         /* Contact Section */
         .contact-section { background: rgba(5,5,5,0.95); padding: 50px 20px; margin-top: 60px; border-top: 1px solid #222; }
-        input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: #111; border: 1px solid #333; color: #fff; border-radius: 8px; }
+        input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: #111; border: 1px solid #333; color: #fff; border-radius: 8px; font-family: 'Inter'; }
         .submit-btn { width: 100%; padding: 16px; background: linear-gradient(45deg, var(--primary), var(--accent)); border: none; color: #fff; font-weight: bold; border-radius: 8px; cursor: pointer; text-transform: uppercase; }
         .info-box { margin-top: 25px; text-align: center; padding: 20px; background: #0a0a0a; border-radius: 12px; }
         .info-box a { color: var(--primary); text-decoration: none; font-weight: bold; }
@@ -145,14 +145,6 @@
                 <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.03.04 PM.mp4" type="video/mp4"></video></div>
                 <div class="label">AI CINEMATIC 03</div>
             </div>
-            <div class="slider-card">
-                <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.44 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">VOID CHRONICLES</div>
-            </div>
-            <div class="slider-card">
-                <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">ATMOSPHERIC REVERIE</div>
-            </div>
         </div>
 
     </div>
@@ -160,12 +152,20 @@
     <section class="contact-section">
         <div class="container" style="max-width: 500px;">
             <h2 style="text-align:center; font-family: 'Syncopate'; font-size: 1.1rem; margin-bottom: 20px;">Get In Touch</h2>
-            <form>
-                <input type="text" placeholder="Name" required>
-                <input type="email" placeholder="Email" required>
-                <textarea rows="3" placeholder="Project details..."></textarea>
+            
+            <form action="https://formsubmit.co/amanhakim037@gmail.com" method="POST">
+                
+                <input type="text" name="_honey" style="display:none">
+                
+                <input type="hidden" name="_captcha" value="false">
+
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <textarea name="message" rows="4" placeholder="Describe your project vision..." required></textarea>
+                
                 <button type="submit" class="submit-btn">SEND MESSAGE</button>
             </form>
+
             <div class="info-box">
                 <a href="tel:+919373242452">+91 9373242452</a>
             </div>
