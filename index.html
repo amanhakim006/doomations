@@ -11,6 +11,188 @@
     <style>
         :root {
             --bg: #000000;
+            --card-bg: rgba(15, 15, 15, 0.9);
+            --primary: #00f2ff;
+            --accent: #7000ff;
+            --text: #ffffff;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Star Background */
+        .stars-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+        }
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; animation: fall linear infinite; }
+        @keyframes fall { from { transform: translateY(-10vh); } to { transform: translateY(110vh); } }
+
+        /* YT Floating Button */
+        .yt-float {
+            position: fixed; top: 15px; left: 15px; z-index: 1000;
+            background: rgba(255, 0, 0, 0.2); padding: 8px 15px; border-radius: 50px;
+            border: 1px solid rgba(255, 0, 0, 0.5); display: flex; align-items: center;
+            text-decoration: none; backdrop-filter: blur(10px);
+        }
+        .yt-icon { width: 18px; height: 18px; background: red; margin-right: 8px; clip-path: polygon(0% 0%, 100% 50%, 0% 100%); }
+        .yt-text { color: white; font-size: 0.7rem; font-weight: bold; font-family: 'Syncopate'; }
+
+        header { padding: 60px 20px 20px; text-align: center; }
+        h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(1.4rem, 8vw, 4rem);
+            background: linear-gradient(to right, var(--primary), #fff, var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: 5px; text-align: center; margin: 0;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h2.section-title { font-family: 'Syncopate'; font-size: 1rem; border-left: 3px solid var(--primary); padding-left: 10px; margin: 30px 0 15px; }
+
+        /* SLIDER SECTION */
+        .video-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding-bottom: 15px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) transparent;
+        }
+        .video-slider::-webkit-scrollbar { height: 4px; }
+        .video-slider::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+        .slider-card {
+            flex: 0 0 70%; /* Mobile par card ki width */
+            scroll-snap-align: start;
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #222;
+        }
+        @media (min-width: 768px) { .slider-card { flex: 0 0 30%; } }
+
+        .v-box { position: relative; width: 100%; padding-top: 177%; }
+        .h-box { position: relative; width: 100%; padding-top: 56.25%; }
+        video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .label { padding: 10px; font-size: 0.7rem; text-align: center; color: var(--primary); font-weight: bold; }
+
+        /* Horizontal Grid */
+        .horizontal-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        @media (min-width: 768px) { .horizontal-grid { grid-template-columns: 1fr 1fr; } }
+
+        /* Contact */
+        .contact-section { background: rgba(5,5,5,0.9); padding: 40px 20px; margin-top: 40px; border-top: 1px solid #222; }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid #333; color: #fff; border-radius: 8px; }
+        .submit-btn { width: 100%; padding: 15px; background: linear-gradient(45deg, var(--primary), var(--accent)); border: none; color: #fff; font-weight: bold; border-radius: 8px; cursor: pointer; }
+        .info-box { margin-top: 20px; text-align: center; padding: 15px; background: #0a0a0a; border-radius: 10px; }
+        .info-box a { color: var(--primary); text-decoration: none; font-weight: bold; }
+
+        footer { text-align: center; padding: 30px; font-size: 0.6rem; color: #555; }
+    </style>
+</head>
+<body>
+
+    <div class="stars-container" id="stars"></div>
+
+    <a href="https://youtube.com/@doomations" target="_blank" class="yt-float">
+        <div class="yt-icon"></div>
+        <span class="yt-text">DOOMATIONS</span>
+    </a>
+
+    <header>
+        <h1>DOOMATIONS</h1>
+        <p style="color: #777; font-size: 0.8rem; margin-top: 10px;">PREMIUM AI VISUALS & CINEMATICS</p>
+    </header>
+
+    <div class="container">
+        
+        <h2 class="section-title">Vertical Shorts (Slide)</h2>
+        <div class="video-slider">
+            <div class="slider-card">
+                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.03.29 PM.mp4" type="video/mp4"></video></div>
+                <div class="label">NEURAL ART 01</div>
+            </div>
+            <div class="slider-card">
+                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.02.56 PM.mp4" type="video/mp4"></video></div>
+                <div class="label">NEURAL ART 02</div>
+            </div>
+            <div class="slider-card">
+                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.02.47 PM.mp4" type="video/mp4"></video></div>
+                <div class="label">NEURAL ART 03</div>
+            </div>
+            <div class="slider-card">
+                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM(1).mp4" type="video/mp4"></video></div>
+                <div class="label">PREVIOUS REEL</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Cinematic Projects</h2>
+        <div class="horizontal-grid">
+            <div class="video-card slider-card" style="flex:none;">
+                <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.44 PM.mp4" type="video/mp4"></video></div>
+                <div class="label">VOID CHRONICLES</div>
+            </div>
+            <div class="video-card slider-card" style="flex:none;">
+                <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM.mp4" type="video/mp4"></video></div>
+                <div class="label">ATMOSPHERIC REVERIE</div>
+            </div>
+        </div>
+
+    </div>
+
+    <section class="contact-section">
+        <div class="container" style="max-width: 500px;">
+            <h2 style="text-align:center; font-family: 'Syncopate'; font-size: 1.1rem;">Get In Touch</h2>
+            <form>
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea rows="3" placeholder="Project details..."></textarea>
+                <button type="submit" class="submit-btn">SEND MESSAGE</button>
+            </form>
+            <div class="info-box">
+                <a href="tel:+919373242452">+91 9373242452</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>&copy; 2026 DOOMATIONS STUDIO</footer>
+
+    <script>
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 40; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 2 + 'px';
+            star.style.width = size; star.style.height = size;
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.animationDuration = Math.random() * 3 + 2 + 's';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doomations | AI Cinematics & Visual Effects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #000000;
             --card-bg: rgba(10, 10, 10, 0.8);
             --primary: #00f2ff;
             --accent: #7000ff;
