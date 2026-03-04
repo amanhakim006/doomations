@@ -11,15 +11,13 @@
     <style>
         :root {
             --bg: #000000;
-            --card-bg: rgba(10, 10, 10, 0.8);
+            --card-bg: rgba(15, 15, 15, 0.9);
             --primary: #00f2ff;
             --accent: #7000ff;
             --text: #ffffff;
-            --text-dim: #777;
         }
 
         * { box-sizing: border-box; }
-
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
@@ -29,201 +27,76 @@
             overflow-x: hidden;
         }
 
-        /* --- ANIMATED BACKGROUND --- */
+        /* Star Background */
         .stars-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
             background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-            overflow: hidden;
         }
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; animation: fall linear infinite; }
+        @keyframes fall { from { transform: translateY(-10vh); } to { transform: translateY(110vh); } }
 
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            from { transform: translateY(-10vh) translateX(0); }
-            to { transform: translateY(110vh) translateX(50px); }
-        }
-
-        /* --- FLOATING YOUTUBE SYMBOL --- */
+        /* YT Floating Button */
         .yt-float {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 1000;
-            background: rgba(255, 0, 0, 0.15);
-            padding: 8px 12px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            backdrop-filter: blur(10px);
-            transition: 0.3s;
+            position: fixed; top: 15px; left: 15px; z-index: 1000;
+            background: rgba(255, 0, 0, 0.2); padding: 8px 15px; border-radius: 50px;
+            border: 1px solid rgba(255, 0, 0, 0.5); display: flex; align-items: center;
+            text-decoration: none; backdrop-filter: blur(10px);
         }
-
-        .yt-icon {
-            width: 20px;
-            height: 20px;
-            background: #ff0000;
-            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>') no-repeat center;
-            -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>') no-repeat center;
-            margin-right: 8px;
-        }
-
+        .yt-icon { width: 18px; height: 18px; background: red; margin-right: 8px; clip-path: polygon(0% 0%, 100% 50%, 0% 100%); }
         .yt-text { color: white; font-size: 0.7rem; font-weight: bold; font-family: 'Syncopate'; }
 
-        /* Hero Section - Optimized */
-        header {
-            min-height: 50vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 60px 20px 20px 20px;
-        }
-
+        header { padding: 60px 20px 20px; text-align: center; }
         h1 {
             font-family: 'Syncopate', sans-serif;
-            /* Adaptive font size and letter spacing for mobile */
-            font-size: clamp(1.4rem, 7vw, 4.5rem);
-            margin: 0;
+            font-size: clamp(1.4rem, 8vw, 4rem);
             background: linear-gradient(to right, var(--primary), #fff, var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: clamp(3px, 1.5vw, 12px);
-            animation: glow 3s infinite alternate;
-            text-align: center;
-            width: 100%;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: 5px; text-align: center; margin: 0;
         }
 
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 5px rgba(0,242,255,0.2)); }
-            to { filter: drop-shadow(0 0 20px rgba(112,0,255,0.4)); }
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h2.section-title { font-family: 'Syncopate'; font-size: 1rem; border-left: 3px solid var(--primary); padding-left: 10px; margin: 30px 0 15px; }
 
-        .hero-desc {
-            max-width: 600px;
-            margin-top: 15px;
-            font-size: clamp(0.85rem, 1.8vw, 1.1rem);
-            line-height: 1.5;
-            color: #ccc;
-            padding: 0 10px;
-        }
-
-        .highlight { color: var(--primary); font-weight: 800; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 10px 20px; }
-
-        h2.section-title {
-            font-size: clamp(1rem, 4vw, 1.3rem);
-            border-left: 4px solid var(--accent);
-            padding-left: 12px;
-            margin: 30px 0 15px 0; /* Reduced gaps */
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-family: 'Syncopate';
-        }
-
-        /* Video Grids */
-        .vertical-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        @media (min-width: 768px) {
-            .vertical-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        }
-
-        .horizontal-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+        /* SLIDER SECTION */
+        .video-slider {
+            display: flex;
+            overflow-x: auto;
             gap: 15px;
+            padding-bottom: 15px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) transparent;
         }
+        .video-slider::-webkit-scrollbar { height: 4px; }
+        .video-slider::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
-        @media (min-width: 768px) {
-            .horizontal-grid { grid-template-columns: 1fr 1fr; gap: 25px; }
-        }
-
-        .video-card {
+        .slider-card {
+            flex: 0 0 70%; /* Mobile par card ki width */
+            scroll-snap-align: start;
             background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            transition: 0.3s ease;
-        }
-
-        .video-card:hover { 
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .v-box { position: relative; width: 100%; padding-top: 177.77%; }
-        .h-box { position: relative; width: 100%; padding-top: 56.25%; }
-
-        video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-
-        .label { padding: 10px; font-size: 0.65rem; color: var(--primary); text-align: center; font-weight: 800; letter-spacing: 1px; }
-
-        /* Contact Section */
-        .contact-section {
-            background: rgba(5, 5, 5, 0.95);
-            padding: 50px 20px;
-            margin-top: 60px;
-            border-top: 1px solid #222;
-        }
-
-        .contact-container { max-width: 500px; margin: 0 auto; }
-
-        input, textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            background: #111;
-            border: 1px solid #333;
-            color: white;
-            border-radius: 10px;
-            font-size: 0.95rem;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            border: none;
-            color: white;
-            font-weight: 900;
-            border-radius: 10px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        .info-box {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid #222;
             border-radius: 15px;
-            text-align: center;
+            overflow: hidden;
+            border: 1px solid #222;
         }
+        @media (min-width: 768px) { .slider-card { flex: 0 0 30%; } }
 
-        .info-box a { color: var(--primary); text-decoration: none; font-size: 1.1rem; font-weight: 900; }
+        .v-box { position: relative; width: 100%; padding-top: 177%; }
+        .h-box { position: relative; width: 100%; padding-top: 56.25%; }
+        video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .label { padding: 10px; font-size: 0.7rem; text-align: center; color: var(--primary); font-weight: bold; }
 
-        footer { text-align: center; padding: 40px; font-size: 0.65rem; color: #444; letter-spacing: 1px; }
+        /* Horizontal Grid */
+        .horizontal-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        @media (min-width: 768px) { .horizontal-grid { grid-template-columns: 1fr 1fr; } }
 
+        /* Contact */
+        .contact-section { background: rgba(5,5,5,0.9); padding: 40px 20px; margin-top: 40px; border-top: 1px solid #222; }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid #333; color: #fff; border-radius: 8px; }
+        .submit-btn { width: 100%; padding: 15px; background: linear-gradient(45deg, var(--primary), var(--accent)); border: none; color: #fff; font-weight: bold; border-radius: 8px; cursor: pointer; }
+        .info-box { margin-top: 20px; text-align: center; padding: 15px; background: #0a0a0a; border-radius: 10px; }
+        .info-box a { color: var(--primary); text-decoration: none; font-weight: bold; }
+
+        footer { text-align: center; padding: 30px; font-size: 0.6rem; color: #555; }
     </style>
 </head>
 <body>
@@ -237,37 +110,38 @@
 
     <header>
         <h1>DOOMATIONS</h1>
-        <p class="hero-desc">
-            Transforming imagination into <span class="highlight">Hyper-Realistic AI Visuals</span>. 
-            Specializing in <span class="highlight">Cinematic Storytelling</span> & Future-Gen Art.
-        </p>
+        <p style="color: #777; font-size: 0.8rem; margin-top: 10px;">PREMIUM AI VISUALS & CINEMATICS</p>
     </header>
 
     <div class="container">
         
-        <h2 class="section-title">Vertical Shorts</h2>
-        <div class="vertical-grid">
-            <div class="video-card">
+        <h2 class="section-title">Vertical Shorts (Slide)</h2>
+        <div class="video-slider">
+            <div class="slider-card">
+                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.03.29 PM.mp4" type="video/mp4"></video></div>
+                <div class="label">NEURAL ART 01</div>
+            </div>
+            <div class="slider-card">
+                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.02.56 PM.mp4" type="video/mp4"></video></div>
+                <div class="label">NEURAL ART 02</div>
+            </div>
+            <div class="slider-card">
+                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.02.47 PM.mp4" type="video/mp4"></video></div>
+                <div class="label">NEURAL ART 03</div>
+            </div>
+            <div class="slider-card">
                 <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM(1).mp4" type="video/mp4"></video></div>
-                <div class="label">NEURAL FLOW</div>
-            </div>
-            <div class="video-card">
-                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM(1).mp4" type="video/mp4"></video></div>
-                <div class="label">CYBER GENESIS</div>
-            </div>
-            <div class="video-card">
-                <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.04.41 PM.mp4" type="video/mp4"></video></div>
-                <div class="label">DREAMSCAPE</div>
+                <div class="label">PREVIOUS REEL</div>
             </div>
         </div>
 
-        <h2 class="section-title">Cinematics</h2>
+        <h2 class="section-title">Cinematic Projects</h2>
         <div class="horizontal-grid">
-            <div class="video-card">
+            <div class="video-card slider-card" style="flex:none;">
                 <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.44 PM.mp4" type="video/mp4"></video></div>
                 <div class="label">VOID CHRONICLES</div>
             </div>
-            <div class="video-card">
+            <div class="video-card slider-card" style="flex:none;">
                 <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-02-22 at 4.06.45 PM.mp4" type="video/mp4"></video></div>
                 <div class="label">ATMOSPHERIC REVERIE</div>
             </div>
@@ -276,37 +150,29 @@
     </div>
 
     <section class="contact-section">
-        <div class="contact-container">
-            <h2 style="text-align:center; font-family: 'Syncopate'; font-size: 1.2rem; margin-bottom: 25px;">Collaborate</h2>
-            
-            <form action="#">
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <textarea rows="4" placeholder="Your Vision..."></textarea>
-                <button type="submit" class="submit-btn">Initialize Project</button>
+        <div class="container" style="max-width: 500px;">
+            <h2 style="text-align:center; font-family: 'Syncopate'; font-size: 1.1rem;">Get In Touch</h2>
+            <form>
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea rows="3" placeholder="Project details..."></textarea>
+                <button type="submit" class="submit-btn">SEND MESSAGE</button>
             </form>
-
             <div class="info-box">
-                <p style="margin:0 0 8px 0; font-size: 0.6rem; color: #555; text-transform: uppercase;">Direct Assistance</p>
                 <a href="tel:+919373242452">+91 9373242452</a>
             </div>
         </div>
     </section>
 
-    <footer>
-        &copy; 2026 DOOMATIONS STUDIO | BEYOND IMAGINATION
-    </footer>
+    <footer>&copy; 2026 DOOMATIONS STUDIO</footer>
 
     <script>
         const starsContainer = document.getElementById('stars');
-        const starCount = 40;
-
-        for (let i = 0; i < starCount; i++) {
+        for (let i = 0; i < 40; i++) {
             const star = document.createElement('div');
             star.className = 'star';
             const size = Math.random() * 2 + 'px';
-            star.style.width = size;
-            star.style.height = size;
+            star.style.width = size; star.style.height = size;
             star.style.left = Math.random() * 100 + 'vw';
             star.style.animationDuration = Math.random() * 3 + 2 + 's';
             star.style.animationDelay = Math.random() * 5 + 's';
