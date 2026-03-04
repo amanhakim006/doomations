@@ -25,6 +25,7 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            user-select: none; /* Dragging ke waqt text select na ho */
         }
 
         /* Star Background */
@@ -59,15 +60,18 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         h2.section-title { font-family: 'Syncopate'; font-size: 1rem; border-left: 3px solid var(--primary); padding-left: 10px; margin: 40px 0 20px; }
 
-        /* VIDEO SLIDER */
+        /* DRAGGABLE SLIDER */
         .video-slider {
             display: flex;
             overflow-x: auto;
             gap: 15px;
-            padding-bottom: 20px;
+            padding-bottom: 25px;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
+            cursor: grab;
+            active: grabbing;
         }
+        .video-slider:active { cursor: grabbing; }
         .video-slider::-webkit-scrollbar { display: none; }
 
         .slider-card {
@@ -77,15 +81,18 @@
             border-radius: 15px;
             overflow: hidden;
             border: 1px solid #222;
+            pointer-events: none; /* Card contents don't block drag */
         }
+        .slider-card video { pointer-events: auto; } /* Let user click video controls */
+
         @media (min-width: 768px) { .slider-card { flex: 0 0 45%; } }
 
         .v-box { position: relative; width: 100%; padding-top: 177%; }
         .h-box { position: relative; width: 100%; padding-top: 56.25%; }
         video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-        .label { padding: 12px; font-size: 0.75rem; text-align: center; color: var(--primary); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .label { padding: 12px; font-size: 0.75rem; text-align: center; color: var(--primary); font-weight: bold; text-transform: uppercase; }
 
-        /* Contact Section */
+        /* Form */
         .contact-section { background: rgba(5,5,5,0.95); padding: 50px 20px; margin-top: 60px; border-top: 1px solid #222; }
         input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: #111; border: 1px solid #333; color: #fff; border-radius: 8px; font-family: 'Inter'; }
         .submit-btn { width: 100%; padding: 16px; background: linear-gradient(45deg, var(--primary), var(--accent)); border: none; color: #fff; font-weight: bold; border-radius: 8px; cursor: pointer; text-transform: uppercase; }
@@ -111,8 +118,8 @@
 
     <div class="container">
         
-        <h2 class="section-title">Vertical Shorts (Slide)</h2>
-        <div class="video-slider">
+        <h2 class="section-title">Vertical Masterpieces</h2>
+        <div class="video-slider draggable">
             <div class="slider-card" style="flex: 0 0 70%; max-width: 300px;">
                 <div class="v-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 3.03.29 PM.mp4" type="video/mp4"></video></div>
                 <div class="label">NEURAL ART 01</div>
@@ -131,8 +138,8 @@
             </div>
         </div>
 
-        <h2 class="section-title">Cinematic Projects (Slide)</h2>
-        <div class="video-slider">
+        <h2 class="section-title">Cinematic Projects</h2>
+        <div class="video-slider draggable">
             <div class="slider-card">
                 <div class="h-box"><video controls muted loop preload="metadata"><source src="WhatsApp Video 2026-03-04 at 2.59.00 PM.mp4" type="video/mp4"></video></div>
                 <div class="label">AI CINEMATIC 01</div>
@@ -152,20 +159,14 @@
     <section class="contact-section">
         <div class="container" style="max-width: 500px;">
             <h2 style="text-align:center; font-family: 'Syncopate'; font-size: 1.1rem; margin-bottom: 20px;">Get In Touch</h2>
-            
             <form action="https://formsubmit.co/amanhakim037@gmail.com" method="POST">
-                
                 <input type="text" name="_honey" style="display:none">
-                
                 <input type="hidden" name="_captcha" value="false">
-
                 <input type="text" name="name" placeholder="Full Name" required>
                 <input type="email" name="email" placeholder="Email Address" required>
                 <textarea name="message" rows="4" placeholder="Describe your project vision..." required></textarea>
-                
                 <button type="submit" class="submit-btn">SEND MESSAGE</button>
             </form>
-
             <div class="info-box">
                 <a href="tel:+919373242452">+91 9373242452</a>
             </div>
@@ -175,6 +176,7 @@
     <footer>&copy; 2026 DOOMATIONS STUDIO</footer>
 
     <script>
+        // Star Animation
         const starsContainer = document.getElementById('stars');
         for (let i = 0; i < 40; i++) {
             const star = document.createElement('div');
@@ -186,6 +188,36 @@
             star.style.animationDelay = Math.random() * 5 + 's';
             starsContainer.appendChild(star);
         }
+
+        // PC Mouse Drag Script
+        const sliders = document.querySelectorAll('.draggable');
+        sliders.forEach(slider => {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.classList.add('active');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+                slider.style.scrollSnapType = 'none'; // Disable snap while dragging
+            });
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+            });
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.style.scrollSnapType = 'x mandatory'; // Re-enable snap
+            });
+            slider.addEventListener('mousemove', (e) => {
+                if(!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2; // scroll-speed
+                slider.scrollLeft = scrollLeft - walk;
+            });
+        });
     </script>
 </body>
 </html>
